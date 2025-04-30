@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload the 'dist' directory (default output for Vite)
-          path: "./dist"
+          path: "./build"
 
   # Deploy job: responsible for deploying the built artifact to GitHub Pages
   deploy:
