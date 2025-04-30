@@ -22,7 +22,7 @@ const GalaxyBackground = () => {
     const particleColors = ['#e0e0e0', '#a0a0ff', '#800080', '#ff6347']; // White, Light Blue, Purple, Tomato (subtle red)
 
     // Generate random points (stars) with initial position, velocity, size, and color
-    const numPoints = 250; // Increased number of points for a denser field
+    const numPoints = 350; // Increased number of points for a denser field
     const particleSizes = [1, 1.5, 2]; // Three distinct small sizes
     const generatePoints = () => {
       pointsRef.current = [];
@@ -87,8 +87,8 @@ const GalaxyBackground = () => {
       ctx.globalAlpha = 1; // Reset alpha
 
       // Draw Spiderweb effect near mouse
-      const mouseProximityThreshold = 180; // Distance threshold for a larger web area around mouse
-      const pointProximityThreshold = 100; // Distance threshold for connecting particles to each other
+      const mouseProximityThreshold = 200; // Distance threshold for a larger web area around mouse
+      const pointProximityThreshold = 110; // Distance threshold for connecting particles to each other
       const currentMousePos = mousePosRef.current; // Get the latest mouse position from the ref
 
       pointsRef.current.forEach(point => {
@@ -152,7 +152,7 @@ const Section = ({ title, children, icon: IconComponent, sectionRef }) => (
     ref={sectionRef} // Assign the ref to the section
     className="mb-12 p-6 rounded-lg relative z-10"
     // Updated background color and border for a more integrated look
-    style={{ backdropFilter: 'blur(8px)', backgroundColor: 'rgba(15, 15, 40, 0.7)', border: '1px solid rgba(160, 160, 255, 0.3)' }} // Darker blue-black background, subtle light blue border
+    style={{ backdropFilter: 'blur(1px)', backgroundColor: 'rgba(15, 15, 40, 0.7)', border: '1px solid rgba(160, 160, 255, 0.3)' }} // Darker blue-black background, subtle light blue border
   >
     {/* Section title color - changed to light cyan */}
     <h2 className="text-2xl font-bold text-[#80ffff] mb-4 border-b-2 border-[#60c0c0] pb-2 flex items-center"> {/* Changed border color */}
@@ -176,13 +176,20 @@ function App() {
   const projectsRef = useRef(null);
   const achievementsRef = useRef(null); // Added ref for Achievements
 
+  const navbarOffset = 70;
   // State to control navbar visibility
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
   // Function to handle smooth scrolling
   const scrollToSection = (ref) => {
     if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
+
+      const targetPosition = ref.current.getBoundingClientRect().top + window.scrollY - navbarOffset;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });;
     }
   };
 
@@ -224,10 +231,9 @@ function App() {
 
       {/* Navigation Bar - Conditionally rendered */}
       {isNavbarVisible && (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-95 shadow-lg transition-all duration-300 ease-in-out">
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#60c0c0] bg-gray-900 bg-opacity-100 shadow-lg transition-all duration-300 ease-in-out hidden md:flex">
           {/* Reduced font size and increased spacing, changed text color to light cyan */}
-          <div className="container mx-auto px-4 py-3 flex justify-center space-x-6 text-[#80ffff] text-xs md:text-sm">
-            <button onClick={() => scrollToSection(summaryRef)} className="hover:text-[#60c0c0] focus:outline-none">Summary</button> {/* Changed hover color */}
+          <div className="container mx-auto px-4 py-4 flex justify-center space-x-14 text-[#80ffff] text-l md:text-s">
             <button onClick={() => scrollToSection(skillsRef)} className="hover:text-[#60c0c0] focus:outline-none">Skills</button> {/* Changed hover color */}
             <button onClick={() => scrollToSection(experienceRef)} className="hover:text-[#60c0c0] focus:outline-none">Experience</button> {/* Changed hover color */}
             <button onClick={() => scrollToSection(educationRef)} className="hover:text-[#60c0c0] focus:outline-none">Education</button> {/* Changed hover color */}
@@ -244,10 +250,10 @@ function App() {
         {/* Reduced font size for the name, changed color to light cyan */}
         <h1 className="text-3xl md:text-5xl font-bold text-[#80ffff] mb-3">Naveen Kumar Manivannan</h1> {/* Changed color */}
         {/* Changed Software Engineer text color to muted blue-gray */}
-        <p className="text-lg md:text-xl text-[#a0b0c0] mb-4">Software Engineer</p> {/* Changed to muted blue-gray */}
+        <p className="text-lg md:text-3xl text-[#a0b0c0] mb-4">Software Engineer</p> {/* Changed to muted blue-gray */}
         {/* Changed tagline text color to muted blue-gray */}
-        <p className="text-md text-[#a0b0c0] mb-6 max-w-2xl">Proficient software engineer, focused on crafting efficient and impactful software solutions.</p> {/* Changed to muted blue-gray */}
-        <div className="flex justify-center space-x-6 text-[#80ffff] text-lg mb-10"> {/* Changed contact info color to light cyan */}
+        <p className="text-md md:text-lg text-[#a0b0c0] mb-6 max-w-2xl">Proficient software engineer, focused on crafting efficient and impactful software solutions.</p> {/* Changed to muted blue-gray */}
+        <div className="flex flex-col items-center space-y-4 text-[#80ffff] text-lg mb-10 md:flex-row md:space-y-0 md:space-x-6"> {/* Changed contact info color to light cyan */}
           {/* Email with Icon */}
           <a href="mailto:naveennv2303@gmail.com" className="hover:underline flex items-center">
              <Mail size={24} className="mr-2" /> naveennv2303@gmail.com
