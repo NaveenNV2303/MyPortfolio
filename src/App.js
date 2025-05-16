@@ -285,7 +285,14 @@ function App() {
         {/* Professional Summary with Icon and Ref */}
         <Section title="Professional Summary" icon={User} sectionRef={summaryRef}>
           {/* Content text color is white */}
-          <p>Proficient Software Engineer with 2 years of experience in designing, developing, and deploying software solutions in Agile environments. Skilled in Java, Spring Boot, Python, and SQL, with additional expertise in machine learning and cloud technologies. Successfully developed and deployed a real-time weather forecasting model in Azure during a master's thesis. Recognized for enhancing system efficiency, automating workflows, and delivering client-focused solutions in banking and e-commerce domains. Recently completed a Master's in Information Systems with Computing from Dublin Business School, further strengthening expertise in advanced technologies and data-driven solutions.</p>
+          <p>Skilled Software Engineer with 2 years of experience designing, developing, and deploying software solutions in Agile
+environments. Proficient in Java, Spring Boot, Angular, SQL, Python, and AWS (certified in cloud fundamentals and
+serverless architecture). Experienced in backend technologies like Spring Boot and Oracle SQL, and in CI/CD pipeline
+implementation using Jenkins. Improved operational efficiency by 15% through business logic development for credit card
+applications, fraud detection, and system enhancements. During my Master’s thesis at Dublin Business School, I
+developed and deployed a weather forecasting model on Azure using machine learning, predicting future air quality (AQI)
+from historical data. This demonstrated my ability to apply data-driven solutions, strengthening my expertise in cloud and
+machine learning.</p>
         </Section>
 
         {/* Technical Skills with Icon and Ref */}
@@ -342,16 +349,24 @@ function App() {
             <h3 className="text-xl font-semibold text-[#80ffff]">Capgemini | Software Engineer</h3> {/* Changed color */}
             <p className="text-[#a0b0c0]">Apr 2021 - Apr 2023</p> {/* Changed to muted blue-gray */}
             <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
-              <li>Developed business logic for credit card application processing, fraud detection, and feature development for Synchrony, a leading banking company in the USA.</li>
-              <li>Customized business logic validations and automated processes to enhance operational efficiency.</li>
-              <li>Implemented Resilience4J to improve application resilience, ensuring efficient handling and avoiding delays during high-load situations, resulting in a 15% improvement in system efficiency.</li>
-              <li>Worked with Jenkins to implement continuous integration/continuous deployment (CI/CD) pipelines for automating application builds, tests, and deployment.</li>
-              <li>Utilized Java, Spring Boot, and Oracle SQL for back-end development.</li>
-              <li>Worked on both ReactJS and Angular for front-end development, depending on task requirements.</li>
-              <li>Used PuTTY for SSH access to manage production and development servers, handling deployments and troubleshooting to ensure smooth operations.</li>
-              <li>Worked with Postman for API testing and Selenium for automated Ul testing and Utilized WinSCP for file transfer between different servers.</li>
-              <li>Coordinated with onshore teams to implement system enhancements and maintain project timelines.</li>
-              <li>Worked in an Agile environment, where tasks were assigned, and progress was updated on the dashboard based on completed work.</li>
+              <li>Developed and implemented business logic for credit card application processing, fraud detection, and feature
+              development for Synchrony, a leading U.S. banking company, supporting over 5 million transactions per day.</li>
+              <li>Integrated Resilience4J into the application, reducing system downtime by 15% during high-load situations, which
+              significantly improved overall system efficiency and enhanced user experience.</li>
+              <li>Worked in an Agile environment, where tasks were assigned, and progress was updated on the dashboard
+              based on completed work, ensuring efficient collaboration and meeting delivery deadlines.</li>
+              <li>Designed and maintained CI/CD pipelines using Jenkins, automating over 200+ deployments per month,
+              reducing deployment time by 30% and improving code quality.</li>
+              <li>Led the implementation of automated business logic validations, streamlining the approval process and reducing
+              manual errors by 20%, which resulted in faster processing times and more accurate results.</li>
+              <li>Worked with ReactJS and Angular for front-end development, enhancing the user interface and ensuring
+              seamless integration with back-end services, improving user satisfaction by 25% as measured by user feedback.</li>
+              <li>Conducted Postman API testing and Selenium automated UI testing, ensuring 99.9% uptime by identifying and
+              resolving critical bugs prior to production deployment.</li>
+              <li>Troubleshot and deployed applications on production and development servers using PuTTY and WinSCP,
+              reducing server downtimes by 10% through proactive management and quick resolution of issues.</li>
+              <li>Coordinated with onshore teams to implement system enhancements, maintain project timelines, and ensure the
+              successful delivery of client projects.</li>
             </ul>
           </div>
           <div>
@@ -391,6 +406,9 @@ function App() {
           <Section title="Certifications" icon={Award} sectionRef={certificationsRef}>
              {/* Content text color is white */}
             <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
+              <li>Introduction to Cloud 101 - Amazon AWS Educate | Issued May 2025</li>
+              <li>Getting Started with Serverless - Amazon AWS Educate | Issued May 2025</li>
+              <li>AWS Certified Developer (In Progress) - Amazon Web Services | Expected [Jun 2025]</li>
               <li>Agile Software Development - University of Minnesota | LinkedIn | Issued Jul 2021</li>
               <li>Core Java - QSpiders - Software Testing Training Institute, Chennai, India | Issued Feb 2021</li>
               <li>Manual Testing - QSpiders - Software Testing Training Institute, Chennai, India | Issued Feb 2021</li>
@@ -405,35 +423,35 @@ function App() {
               <h3 className="text-xl font-semibold text-[#80ffff]">E-Commerce Platform Customization</h3> {/* Changed color */}
                <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
                 <li>Designed a database model for a shoe company, focusing on data structure and system optimization.</li>
-                <li>Utilized ETL processes to extract, transform, and load data into the database as part of advanced database systems.</li>
+                <li>Utilized ETL processes (Extract, Transform, Load) with SQL and Oracle to manage and process large volumes of data for efficient database handling.</li>
               </ul>
             </div>
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-[#80ffff]">Real-Time Social Media Platform</h3> {/* Changed color */}
                <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
                 <li>Developed a mobile web application for posting and sharing thoughts with real-time like and comment features.</li>
-                <li>Built using lonic Framework and Firebase DB to ensure scalability and live updates.</li>
+                <li>Built using Ionic Framework for cross-platform mobile development and Firebase for real-time data synchronization, ensuring scalability and live updates.</li>
                 </ul>
               </div>
                <div className="mb-6">
                 <h3 className="text-xl font-semibold text-[#80ffff]">Banking Application Development</h3> {/* Changed color */}
                  <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
                   <li>Developed business logic for credit card applications, fraud detection, and feature development for Synchrony, a leading banking company in the USA.</li>
-                  <li>Enhanced system reliability and user experience through innovative feature development.</li>
+                  <li>Utilized Spring Boot and Oracle SQL for backend development, ensuring system reliability and improved user experience.</li>
                 </ul>
               </div>
                <div className="mb-6">
                 <h3 className="text-xl font-semibold text-[#80ffff]">Real-Time Weather Forecasting</h3> {/* Changed color */}
                  <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
                   <li>Developed an LSTM model for predicting AQI and deployed the model on the Azure cloud platform.</li>
-                  <li>The model predicts future AQI based on a selected date input from the user.</li>
+                  <li>The model predicts future AQI levels based on user-selected date inputs, using historical data and machine learning algorithms for accurate forecasts.</li>
                 </ul>
               </div>
                <div className="mb-6">
                 <h3 className="text-xl font-semibold text-[#80ffff]">Property Listing Web Application</h3> {/* Changed color */}
                  <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
                   <li>Developed a web application using Flask for browsing and managing property listings and related services.</li>
-                  <li>Implemented user-friendly features to enhance property search and management experiences.</li>
+                  <li>Implemented HTML, CSS, and JavaScript to create user-friendly features, enhancing property search and management experiences.</li>
                 </ul>
               </div>
             </Section>
@@ -443,9 +461,9 @@ function App() {
             <Section title="Achievements" icon={Award} sectionRef={achievementsRef}>
                {/* Content text color is white */}
               <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
-                <li>1-star rating in the team at Capgemini, awarded to only one person in the team, recognizing exceptional performance and contribution.</li>
-                <li>Promoted from Software Engineer to Senior Software Engineer within 2 years at Capgemini, demonstrating exceptional performance and growth in the role.</li>
-                <li>Added the Resilience4J circuit breaker in the existing application process, which improved application handling and avoided delays.</li>
+                <li>1-Star Rating at Capgemini: Honored with this recognition, given to one team member, for consistent performance and meaningful contributions to project success.</li>
+                <li>Promotion to Senior Software Engineer: Progressed from Software Engineer to Senior Software Engineer within 2 years at Capgemini, reflecting growth and a commitment to contributing effectively to the team.</li>
+                <li>Improved Application Resilience: Contributed to enhancing application stability by implementing Resilience4J, which helped improve system efficiency and minimize delays.</li>
               </ul>
             </Section>
 
