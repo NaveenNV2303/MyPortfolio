@@ -385,7 +385,7 @@ machine learning.</p>
              {/* Content text color is white */}
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-[#80ffff]">Dublin Business School | M.Sc. in Information Systems with Computing</h3> {/* Changed color */}
-              <p className="text-[#a0b0c0]">2023 - 2024 | GPA: 7.30</p> {/* Changed to muted blue-gray */}
+              <p className="text-[#a0b0c0]">2023 - 2024 | 1:1 | GPA: 7.30</p> {/* Changed to muted blue-gray */}
               <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
                 <li>Completed advanced coursework in machine learning, data analytics, and cloud computing.</li>
                 <li>Developed a real-time weather forecasting model and deployed it in Azure as part of the thesis.</li>
