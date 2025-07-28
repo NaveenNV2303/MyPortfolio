@@ -408,7 +408,6 @@ machine learning.</p>
             <ul className="list-disc list-inside ml-4 mt-2 text-white"> {/* Changed list item color to white */}
               <li>Introduction to Cloud 101 - Amazon AWS Educate | Issued May 2025</li>
               <li>Getting Started with Serverless - Amazon AWS Educate | Issued May 2025</li>
-              <li>AWS Certified Developer (In Progress) - Amazon Web Services | Expected [Jun 2025]</li>
               <li>Agile Software Development - University of Minnesota | LinkedIn | Issued Jul 2021</li>
               <li>Core Java - QSpiders - Software Testing Training Institute, Chennai, India | Issued Feb 2021</li>
               <li>Manual Testing - QSpiders - Software Testing Training Institute, Chennai, India | Issued Feb 2021</li>
