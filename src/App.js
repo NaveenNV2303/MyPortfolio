@@ -1,7 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Linkedin, Github, Mail, User, Code, Briefcase, GraduationCap, Award, Folder, Phone } from 'lucide-react';
+import {
+  ChevronDown,
+  Linkedin,
+  Github,
+  Mail,
+  User,
+  Code,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Folder,
+  Phone
+} from 'lucide-react';
 
-// GalaxyBackground Component
+/* ================= BACKGROUND ================= */
+
 const GalaxyBackground = () => {
   const canvasRef = useRef(null);
   const mousePosRef = useRef({ x: 0, y: 0 });
@@ -28,7 +41,7 @@ const GalaxyBackground = () => {
           vy: (Math.random() - 0.5) * 0.12,
           radius: particleSizes[Math.floor(Math.random() * particleSizes.length)],
           alpha: Math.random() * 0.7 + 0.3,
-          color: particleColors[Math.floor(Math.random() * particleColors.length)],
+          color: particleColors[Math.floor(Math.random() * particleColors.length)]
         });
       }
     };
@@ -53,49 +66,23 @@ const GalaxyBackground = () => {
       ctx.fillStyle = '#05051a';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      pointsRef.current.forEach(point => {
-        point.x += point.vx;
-        point.y += point.vy;
+      pointsRef.current.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
 
-        if (point.x < 0) point.x = canvas.width;
-        if (point.x > canvas.width) point.x = 0;
-        if (point.y < 0) point.y = canvas.height;
-        if (point.y > canvas.height) point.y = 0;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
 
-        ctx.fillStyle = point.color;
-        ctx.globalAlpha = point.alpha;
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
         ctx.beginPath();
-        ctx.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
       });
 
       ctx.globalAlpha = 1;
-
-      const mouseThreshold = 200;
-      const pointThreshold = 110;
-      const mouse = mousePosRef.current;
-
-      pointsRef.current.forEach(p => {
-        const dMouse = Math.hypot(mouse.x - p.x, mouse.y - p.y);
-        if (dMouse < mouseThreshold) {
-          pointsRef.current.forEach(op => {
-            if (p !== op) {
-              const dPoints = Math.hypot(p.x - op.x, p.y - op.y);
-              const dMouseOp = Math.hypot(mouse.x - op.x, mouse.y - op.y);
-              if (dPoints < pointThreshold && dMouseOp < mouseThreshold) {
-                const opacity = 1 - dMouse / mouseThreshold;
-                ctx.strokeStyle = `rgba(100,149,237,${opacity * 0.5})`;
-                ctx.lineWidth = 0.8;
-                ctx.beginPath();
-                ctx.moveTo(p.x, p.y);
-                ctx.lineTo(op.x, op.y);
-                ctx.stroke();
-              }
-            }
-          });
-        }
-      });
-
       requestAnimationFrame(draw);
     };
 
@@ -110,24 +97,27 @@ const GalaxyBackground = () => {
   return <canvas ref={canvasRef} className="fixed inset-0 z-0" />;
 };
 
-// Section Component
-const Section = ({ title, children, icon: IconComponent, sectionRef }) => (
+/* ================= SECTION ================= */
+
+const Section = ({ title, children, icon: Icon, sectionRef }) => (
   <section
     ref={sectionRef}
     className="mb-12 p-6 rounded-lg relative z-10"
     style={{
       backdropFilter: 'blur(1px)',
-      backgroundColor: 'rgba(15, 15, 40, 0.7)',
-      border: '1px solid rgba(160, 160, 255, 0.3)'
+      backgroundColor: 'rgba(15,15,40,0.7)',
+      border: '1px solid rgba(160,160,255,0.3)'
     }}
   >
     <h2 className="text-2xl font-bold text-[#80ffff] mb-4 border-b-2 border-[#60c0c0] pb-2 flex items-center">
-      {IconComponent && <IconComponent size={28} className="mr-3 text-[#80ffff]" />}
+      {Icon && <Icon size={28} className="mr-3" />}
       {title}
     </h2>
     <div className="text-white">{children}</div>
   </section>
 );
+
+/* ================= APP ================= */
 
 function App() {
   const landingRef = useRef(null);
@@ -139,8 +129,8 @@ function App() {
   const projectsRef = useRef(null);
   const achievementsRef = useRef(null);
 
-  const navbarOffset = 70;
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+  const navbarOffset = 70;
 
   const scrollToSection = (ref) => {
     if (ref.current) {
@@ -150,13 +140,13 @@ function App() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       if (landingRef.current) {
         setIsNavbarVisible(landingRef.current.getBoundingClientRect().bottom <= 0);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
@@ -164,8 +154,8 @@ function App() {
       <GalaxyBackground />
 
       {isNavbarVisible && (
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#60c0c0] bg-gray-900 hidden md:flex">
-          <div className="container mx-auto px-4 py-4 flex justify-center space-x-14 text-[#80ffff]">
+        <nav className="fixed top-0 inset-x-0 z-50 bg-gray-900 border-b border-[#60c0c0] hidden md:flex">
+          <div className="mx-auto px-4 py-4 flex space-x-14 text-[#80ffff]">
             <button onClick={() => scrollToSection(skillsRef)}>Skills</button>
             <button onClick={() => scrollToSection(experienceRef)}>Experience</button>
             <button onClick={() => scrollToSection(educationRef)}>Education</button>
@@ -176,82 +166,126 @@ function App() {
         </nav>
       )}
 
-      {/* Landing */}
-      <section ref={landingRef} className="min-h-screen flex flex-col justify-center items-center text-center px-4">
-        <h1 className="text-3xl md:text-5xl font-bold text-[#80ffff] mb-3">Naveen Kumar Manivannan</h1>
+      {/* LANDING */}
+      <section ref={landingRef} className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4">
+        <h1 className="text-3xl md:text-5xl font-bold text-[#80ffff] mb-3">
+          Naveen Kumar Manivannan
+        </h1>
         <p className="text-lg md:text-3xl text-[#a0b0c0] mb-4">Software Engineer</p>
-        <p className="text-md md:text-lg text-[#a0b0c0] mb-6 max-w-2xl">
-          Backend-focused software engineer building scalable, secure, cloud-native systems using Java, Spring Boot, and AWS.
+        <p className="text-md md:text-lg text-[#a0b0c0] max-w-2xl mb-6">
+          Software Engineer specializing in scalable backend systems, cloud-native architectures,
+          and full-stack development with Java, Spring Boot, React, and AWS.
         </p>
 
-        <div className="flex flex-col md:flex-row gap-6 text-[#80ffff] mb-10">
-          <a href="mailto:naveennv2303@gmail.com" className="flex items-center"><Mail className="mr-2" /> naveennv2303@gmail.com</a>
-          <span className="flex items-center"><Phone className="mr-2" /> +353 894654932</span>
-          <a href="https://www.linkedin.com/in/naveennv" className="flex items-center"><Linkedin className="mr-2" /> LinkedIn</a>
-          <a href="https://github.com/NaveenNV2303" className="flex items-center"><Github className="mr-2" /> GitHub</a>
+        <div className="flex flex-col md:flex-row gap-6 text-[#80ffff] text-lg">
+          <a href="mailto:naveennv2303@gmail.com" className="flex items-center">
+            <Mail className="mr-2" /> naveennv2303@gmail.com
+          </a>
+          <span className="flex items-center">
+            <Phone className="mr-2" /> +353 894654932
+          </span>
+          <a href="https://linkedin.com/in/naveennv" className="flex items-center">
+            <Linkedin className="mr-2" /> LinkedIn
+          </a>
+          <a href="https://github.com/NaveenNV2303" className="flex items-center">
+            <Github className="mr-2" /> GitHub
+          </a>
         </div>
 
-        <ChevronDown size={40} className="text-[#80ffff] animate-bounce" />
+        <ChevronDown size={40} className="text-[#80ffff] mt-12 animate-bounce" />
       </section>
 
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-8 pt-16 relative z-10">
 
+        {/* SUMMARY */}
         <Section title="Professional Summary" icon={User} sectionRef={summaryRef}>
           <p>
-            Software Engineer with strong experience building scalable backend systems and cloud-native applications using Java 17,
-            Spring Boot, and RESTful APIs. Skilled in microservices architecture, Kafka-based event-driven systems,
-            containerized deployments on AWS, and CI/CD automation. Founder of WalrieWay, delivering end-to-end web
-            and mobile solutions for real clients. Passionate about clean architecture, system reliability, and secure software design.
+            Software Engineer with strong hands-on experience building scalable,
+            cloud-ready applications using Java 17, Spring Boot, and RESTful APIs.
+            Skilled full-stack developer with React and Ionic experience, backend
+            services on AWS, and CI/CD automation. Founder of WalrieWay, delivering
+            end-to-end web and mobile solutions. Passionate about clean architecture,
+            distributed systems, and continuous learning.
           </p>
         </Section>
 
+        {/* SKILLS */}
         <Section title="Technical Skills" icon={Code} sectionRef={skillsRef}>
-          <div className="grid md:grid-cols-3 gap-4">
-            <p><strong>Languages:</strong> Java, Python, JavaScript, TypeScript</p>
-            <p><strong>Frameworks:</strong> Spring Boot, React, Angular, Ionic, Flask</p>
-            <p><strong>Cloud & DevOps:</strong> AWS, Docker, Kubernetes, Terraform</p>
-            <p><strong>Databases:</strong> PostgreSQL, MySQL, Oracle, MongoDB</p>
-            <p><strong>Messaging:</strong> Kafka, REST, OAuth2, JWT</p>
-            <p><strong>CI/CD:</strong> Jenkins, GitHub Actions</p>
-          </div>
+          <ul className="list-disc list-inside space-y-1">
+            <li><strong>Languages:</strong> Java, Python, JavaScript, TypeScript, C++, C#</li>
+            <li><strong>Frameworks:</strong> Spring Boot, React, Angular, Node.js, Flask, Django</li>
+            <li><strong>Databases:</strong> PostgreSQL, MySQL, Oracle, MongoDB, Redis, DynamoDB</li>
+            <li><strong>Messaging:</strong> Kafka, REST, OAuth2, JWT, RBAC, mTLS</li>
+            <li><strong>Cloud & DevOps:</strong> AWS, Azure, Docker, Kubernetes, Terraform, Jenkins</li>
+          </ul>
         </Section>
 
+        {/* EXPERIENCE */}
         <Section title="Experience" icon={Briefcase} sectionRef={experienceRef}>
-          <h3 className="text-xl text-[#80ffff] font-semibold">Capgemini | Software Engineer</h3>
-          <p className="text-[#a0b0c0]">Apr 2021 – Apr 2023</p>
-          <ul className="list-disc ml-4 mt-2">
-            <li>Built Spring Boot microservices supporting 50M+ daily transactions with 99.9% uptime.</li>
-            <li>Implemented Kafka-based event processing for distributed system integration.</li>
-            <li>Automated CI/CD pipelines and cloud deployments on AWS EKS.</li>
-            <li>Improved observability, resilience, and security using Resilience4J and OAuth2.</li>
+          <h3 className="text-xl font-semibold text-[#80ffff]">Capgemini — Software Engineer</h3>
+          <p className="text-[#a0b0c0] mb-2">Apr 2021 – Apr 2023</p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>Built Java 17 & Spring Boot microservices supporting 50M+ daily transactions.</li>
+            <li>Developed React-based UIs for financial applications.</li>
+            <li>Implemented Kafka-based event-driven integrations.</li>
+            <li>Automated AWS infrastructure with Terraform and Kubernetes (EKS).</li>
+            <li>Led CI/CD pipelines using Jenkins and GitHub Actions.</li>
+            <li>Improved resilience using Resilience4J and ELK stack.</li>
           </ul>
 
-          <h3 className="text-xl text-[#80ffff] font-semibold mt-6">WalrieWay | Founder & Software Engineer</h3>
-          <p className="text-[#a0b0c0]">May 2023 – Present</p>
-          <ul className="list-disc ml-4 mt-2">
-            <li>Founded and delivered scalable web and mobile applications for small businesses.</li>
-            <li>Built cross-platform Ionic apps and full-stack solutions.</li>
-            <li>Managed full lifecycle from requirements to deployment.</li>
+          <h3 className="text-xl font-semibold text-[#80ffff] mt-6">WalrieWay — Founder & Software Engineer</h3>
+          <p className="text-[#a0b0c0] mb-2">May 2023 – Present</p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>Founded and led delivery of scalable web and mobile applications.</li>
+            <li>Built portfolio, business, and e-commerce websites.</li>
+            <li>Developed cross-platform apps using Ionic.</li>
+            <li>Delivered 15+ client projects end-to-end.</li>
           </ul>
         </Section>
 
+        {/* EDUCATION */}
+        <Section title="Education" icon={GraduationCap} sectionRef={educationRef}>
+          <p className="font-semibold text-[#80ffff]">
+            M.Sc. Information Systems with Computing (First Class Honours – 1:1)
+          </p>
+          <p className="text-[#a0b0c0] mb-3">Dublin Business School — 2023–2024</p>
+
+          <p className="font-semibold text-[#80ffff] mt-4">
+            Bachelor of Engineering in Electronics & Communication (First Class Honours – 1:1)
+          </p>
+          <p className="text-[#a0b0c0]">2016–2020</p>
+        </Section>
+
+        {/* CERTIFICATIONS */}
+        <Section title="Certifications" icon={Award} sectionRef={certificationsRef}>
+          <ul className="list-disc list-inside space-y-1">
+            <li>AWS Certified Developer – Associate (Course Completion)</li>
+            <li>Serverless Foundations — AWS Educate</li>
+            <li>Cloud 101 — AWS Educate</li>
+            <li>Agile Software Development — Coursera</li>
+            <li>Java Foundation — Oracle</li>
+          </ul>
+        </Section>
+
+        {/* PROJECTS */}
         <Section title="Projects" icon={Folder} sectionRef={projectsRef}>
-          <ul className="list-disc ml-4">
-            <li>Cloud-Based Risk Evaluation System (Java, Spring Boot, AWS, Kubernetes)</li>
-            <li>Hotel Booking Platform with Kafka-driven workflows</li>
-            <li>Real-Time Social Media Platform (Ionic, Firebase)</li>
-            <li>Property Listing Platform (Flask, PostgreSQL)</li>
+          <ul className="list-disc list-inside space-y-1">
+            <li>Cloud-Based Risk Evaluation System (AWS, Java, Kubernetes, Kafka)</li>
+            <li>Hotel Booking Platform (React + Spring Boot)</li>
+            <li>Real-Time Social Media App (Ionic + Firebase)</li>
+            <li>Property Listing Platform (Flask + PostgreSQL)</li>
           </ul>
         </Section>
 
+        {/* ACHIEVEMENTS */}
         <Section title="Achievements" icon={Award} sectionRef={achievementsRef}>
-          <ul className="list-disc ml-4">
-            <li>1-Star Performer at Capgemini for backend excellence</li>
-            <li>Promoted to Senior Software Engineer within 2 years</li>
+          <ul className="list-disc list-inside space-y-1">
+            <li>Promoted to Senior Software Engineer within 2 years at Capgemini</li>
+            <li>1-Star Performer Award for backend delivery excellence</li>
           </ul>
         </Section>
 
-        <footer className="text-center text-[#a0b0c0] mt-12">
+        <footer className="text-center text-[#a0b0c0] mt-12 pb-8">
           © 2024 Naveen Kumar Manivannan
         </footer>
       </div>
